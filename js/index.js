@@ -28,28 +28,11 @@ $(document).ready(function(){
     if(oldidx != idx){
       $btn.eq(oldidx).removeClass("active");
       $btn.eq(idx).addClass("active");
-      $img.eq(oldidx).stop().fadeOut("300");
-      $img.eq(idx).stop().fadeIn("300");
+      $img.eq(oldidx).stop().fadeOut("1000");
+      $img.eq(idx).stop().fadeIn("1000");
     }
     oldidx = idx;
   };
-
-  // function (idx){
-  //   idx++;
-  //   if(idx == 1){
-  //     $("main").css("background-color","#111")
-  //   }else if(idx == 2){
-  //     $("main").css("background-color","#333")
-  //   }else if(idx == 3){
-  //     $("main").css("background-color","#555")
-  //   }else if(idx == 4){
-  //     $("main").css("background-color","#777")
-  //   }else if(idx == 5){
-  //     $("main").css("background-color","#fff")
-  //   }else if(idx > img_n){
-  //     idx=0;
-  //   }
-  // }
 
   //자동함수 생성
   function changeAuto(){
@@ -92,12 +75,39 @@ $(document).ready(function(){
   });
   
   /* Section______________ */
-  //content1
+  //about
   $(window).scroll(function(){
     if($(window).scrollTop() < 300){
     }else{
       $(".content1 img").css("opacity","1")
     }
+  });
+
+  //membership
+  $(".pong").click(function(){
+    $(this).toggleClass("active");
+    $(this).siblings(".pong_info").stop().slideUp();
+    $(this).next().stop().slideToggle();
+  });
+
+  //Mall
+  let x=0;
+  let s=-1;
+
+  function motion(){
+    x = x + s;
+    if(x<-1200){x=0};
+    if(x>0){x=-1200};
+
+    $(".slideContainer").css({left:x});
+  };
+
+  bauto=setInterval(motion,20);
+
+  $(".slideContainer").hover(function(){ 
+    clearInterval(bauto);
+  }, function(){
+    bauto = setInterval(motion,20);
   });
 
 });
