@@ -24,12 +24,13 @@ $(document).ready(function(){
   let idx = 0;
   let img_n = $img.length;
 
+  //이미지와 버튼이 바뀌는 함수
   function changeImg(idx){
     if(oldidx != idx){
       $btn.eq(oldidx).removeClass("active");
       $btn.eq(idx).addClass("active");
-      $img.eq(oldidx).stop().fadeOut("1000");
-      $img.eq(idx).stop().fadeIn("1000");
+      $img.eq(oldidx).stop().fadeOut("300");
+      $img.eq(idx).stop().fadeIn("300");
     }
     oldidx = idx;
   };
@@ -108,6 +109,26 @@ $(document).ready(function(){
     clearInterval(bauto);
   }, function(){
     bauto = setInterval(motion,20);
+  });
+
+  //New&Best
+  let x1=0;
+  let s1=-1;
+
+  function motion1(){
+    x1 = x1 + s1;
+    if(x1<-1440){x1=0};
+    if(x1>0){x1=-1440};
+
+    $(".slideContainer2").css({left:x1});
+  };
+
+  bauto1=setInterval(motion1,20);
+
+  $(".slideContainer2").hover(function(){ 
+    clearInterval(bauto1);
+  }, function(){
+    bauto1 = setInterval(motion1,20);
   });
 
 });
